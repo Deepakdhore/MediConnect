@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}
+This is The Sign up page
+{% endblock title %}
+
+{% block head%}
+
+{%endblock head%}
+
+    {%block Nav%}
+    <li class="nav-item">
+        <a class="nav-link" href="/about">About </a>
+    {%endblock Nav%}
+{% block CSS %}
+
+{% endblock CSS %}
+
+
+{% block body %}
+
+<div class="container mt-5 ">
+<div class="row ">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 jumbotron">
+      <h4 class="text-center">Sign-up here</h4>
+        <form action="/signup" method="POST">
+            <div class="form-group">
+                <label for="username">UserName:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="user_type">Sign-up as</label>
+              <select class="form-control" id="user_type" name="user_type">
+                <option>Patient</option>
+                <option>Doctor</option>
+                <option>Staff</option>
+              </select>
+
+              <div class="form-group" id="additionalFields">
+                <!-- Additional fields will be added here dynamically -->
+              </div>
+
+
+            </div>
+           
+            
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Sign up</button>
+          </form>
+          Already a User <a href="signin">sign-in</a>
+    
+    </div>
+    <div class="col-md-4"></div>
+<div>
+    
+    
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const typeSelect = document.getElementById('user_type');
+    const additionalFieldsContainer = document.getElementById('additionalFields');
+  
+    // Function to generate and append additional fields
+    function addAdditionalFields(fields) {
+      additionalFieldsContainer.innerHTML = ''; // Clear previous fields
+  
+      fields.forEach(field => {
+        const div = document.createElement('div');
+        div.className = 'form-group';
+        const label = document.createElement('label');
+        label.textContent = field.label;
+
+        if (field.id === 'doctorSpecialization') {
+          const select = document.createElement('select');
+          select.className = 'form-control';
+          select.id = field.id;
+          select.name=field.name
+          field.options.forEach(option => {
+            const optionElem = document.createElement('option');
+            optionElem.textContent = option;
+            select.appendChild(optionElem);
+          });
+          div.appendChild(label);
+          div.appendChild(select);
+        } else
+        {
+          const input = document.createElement('input');
+          input.type = field.type;
+          input.className = 'form-control';
+          input.name = field.name;
+          div.appendChild(label);
+          div.appendChild(input);
+        }
+       
+        additionalFieldsContainer.appendChild(div);
+      });
+    }
+  
+    // Event listener for type selection
+    typeSelect.addEventListener('change', function() {
+      const selectedType = typeSelect.value;
+      if (selectedType === 'Doctor') {
+        const doctorFields = [
+          { label: 'Name', type: 'text', name: 'd_name' },
+          { label: 'Age:', type: 'number', name: 'doctorAge' },
+          { label: 'Specialization:', type: 'text',name:'specialization', id: 'doctorSpecialization', options: ['Cardiology', 'Dermatology', 'Neurology', 'Orthopedics','Pediatrics']},
+          { label: 'Shifts:', type: 'text', name: 'shifts' }
+        ];
+        addAdditionalFields(doctorFields);
+      } else if (selectedType === 'Patient') {
+        const patientFields = [
+          { label: 'Name', type: 'text', name: 'name' },
+          { label: 'Age:', type: 'number', name: 'patientAge' },
+          { label: 'Address:', type: 'text', name: 'address' },
+          { label: 'Phone Number:', type: 'number', name: 'phone' }
+        ];
+        addAdditionalFields(patientFields);
+      } else if (selectedType === 'Staff') {
+        const staffFields = [
+          { label: 'Name', type: 'text', name: 's_name' },
+          { label: 'Age:', type: 'number', name: 'staffAge' }
+        ];
+        addAdditionalFields(staffFields);
+      } else {
+        additionalFieldsContainer.innerHTML = ''; // Clear additional fields
+      }
+    });
+  });
+  
+</script>
+     
+    
+    
+
+{% endblock body %}

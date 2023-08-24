@@ -1,0 +1,36 @@
+{% extends "base4.html" %}
+
+{% block title %}
+View details page
+{% endblock title %}
+
+{% block CSS %}
+
+{% endblock CSS %}
+
+{% block body %}
+<div class="container-fluid">
+    <button type="button" class="btn btn-primary">
+      Welcome Doctor {{details.username}} <span class="badge badge-light"></span>
+    </button>
+  </div>
+<div class="container">
+    <h1>Details </h1>
+    {% if details %}
+        <div class="card">
+            <div class="card-body jumbotron">
+                <h5 class="card-title">Patient name:{{details.name}}</h5>
+                <p class="card-text">Patient age: {{details.age}}</p>
+                <p class="card-text">Gaurdian:    {{details.gaurdian}}</p>
+                <p class="card-text">Address:     {{details.address}}</p>
+                <p class="card-text">Phone:       {{details.phone}}</p>
+                <p class="card-text">Shedule Date:{{details.date}}</p>
+                <p class="card-text">Shedule time:{{details.time}}</p>
+                
+            </div>
+        </div>
+    {% else %}
+        <p class="no-employee">No employee found.</p>
+    {% endif %}
+</div>
+{% endblock body%}

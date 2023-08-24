@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+this is rank page
+{% endblock title %}
+
+{% block CSS %}
+
+{% endblock CSS %}
+
+{% block body %}
+<div class="container">
+    <h1>Top Performing Employee</h1>
+    {% if employee %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ employee.name }}</h5>
+                <p class="card-text">Phone: {{ employee.phone }}</p>
+                <p class="card-text">Address: {{ employee.address }}</p>
+                <p class="card-text">Rank: {{ employee.rank }}</p>
+            </div>
+        </div>
+    {% else %}
+        <p class="no-employee">No employee found.</p>
+    {% endif %}
+</div>
+{% endblock body %}

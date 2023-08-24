@@ -1,0 +1,48 @@
+{% extends "base2.html" %}
+
+{% block title %}
+shedules page
+{% endblock title %}
+
+{% block CSS %}
+
+{% endblock CSS %}
+
+{% block body %}
+
+<div class="container mt-5 ">
+<div class="row ">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id no</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Doctor</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for shedule in shedules %}
+              <tr>
+                <td>{{shedule.id}}</td>
+                <td>{{shedule.name}}</td>
+                <td>{{shedule.address}}</td>
+                <td>{{shedule.phone}}</td>
+                <td>{{shedule.doctor}}</td>
+                <td>{{shedule.date}}</td>
+                <td>{{shedule.time}}</td>
+                
+            </tr>
+              {% endfor %}
+            </tbody>
+      </table>
+    </div>
+<div class="col-md-2"></div>
+</div>
+</div>
+  
+{% endblock body%}

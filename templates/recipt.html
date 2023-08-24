@@ -1,0 +1,52 @@
+{% extends "base3.html" %}
+
+{% block title %}
+
+{% endblock title %}
+
+{% block CSS %}
+
+{% endblock CSS %}
+
+{% block body %}
+<div class='container-fluid mt-5'>
+    <div class="row ">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 jumbotron">
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Congratulations! Your Appointment is Approved by Doctor {{patient.doctor}}</h4>
+            <div class="appointment-details">
+                <h5>Your Appointment Details:</h5>
+                <ul>
+                    <li>Appointment id: {{patient.id}}</li>
+                    <li>Name: {{patient.name}}</li>
+                    <li>Age: {{patient.age}}</li>
+                    <li>Address: {{patient.address}}</li>
+                    <li>Doctor: {{patient.doctor}}-{{patient.illness}}</li>
+                    <li>Date: {{patient.date}}</li>
+                    <li>Time: {{patient.time}}</li>
+                    <li>phone: {{patient.phone}}</li>
+                </ul>
+            </div><hr>
+            <p class="mb-0">Please check the details, press confirm to receive email/message or if u want to edit please press edit button</p>
+          </div>
+          <form method="post" action="/recipt_actions">
+            <input type="hidden" name="appointment_id" value="{{ patient.id }}">
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" name="action" value="confirm" class="btn btn-primary btn-lg btn-block">Confirm</button>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" name="action" value="edit" class="btn btn-secondary btn-lg btn-block">Edit Details</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </form>
+        
+          
+          
+</div>
+  <div class="col-md-4"></div>
+</div>
+</div>
+{% endblock body %}
